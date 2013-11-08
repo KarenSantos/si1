@@ -1,6 +1,7 @@
 package si1.lab1;
 
 import static org.junit.Assert.*;
+import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,6 @@ public class ConversorTest {
 
 	@Test
 	public void testUnidades() throws Exception {
-		assertEquals(conv.converter(0), "zero");
 		assertEquals(conv.converter(1), "um");
 		assertEquals(conv.converter(5), "cinco");
 		assertEquals(conv.converter(7), "sete");
@@ -81,9 +81,39 @@ public class ConversorTest {
 	}
 	
 	@Test
-	public void testBilhao() throws Exception{
-		
+	public void testExtremos() throws Exception{
+
+		assertEquals(conv.converter(0), "zero");
 		assertEquals(conv.converter(1000000000), "um bilhao");
+		
+		try {
+			conv.converter(-1);
+			fail("Deveria ter lancado excecao de numero invalido");
+		} catch (Exception e){
+			assertEquals(e.getMessage(), "Numero invalido");
+		}
+		
+		try {
+			conv.converter(-52);
+			fail("Deveria ter lancado excecao de numero invalido");
+		} catch (Exception e){
+			assertEquals(e.getMessage(), "Numero invalido");
+		}
+		
+		try {
+			conv.converter(1000000001);
+			fail("Deveria ter lancado excecao de numero invalido");
+		} catch (Exception e){
+			assertEquals(e.getMessage(), "Numero invalido");
+		}
+		
+		try {
+			conv.converter(1500000000);
+			fail("Deveria ter lancado excecao de numero invalido");
+		} catch (Exception e){
+			assertEquals(e.getMessage(), "Numero invalido");
+		}
+		
 	}
 
 }

@@ -9,9 +9,9 @@
     <ul>
         @for(task <- tasks) {
             <li>
-                @task.label
+                @task.getLabel()
                 
-                @form(routes.Application.deleteTask(task.id)) {
+                @form(routes.Application.deleteTask(task.getId())) {
                     <input type="submit" value="Delete">
                 }
             </li>

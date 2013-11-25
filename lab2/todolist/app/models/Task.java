@@ -1,8 +1,10 @@
 package models;
 
 import java.util.*;
+
 import play.db.ebean.*;
 import play.data.validation.Constraints.*;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,11 +14,16 @@ public class Task extends Model {
 	private Long id;
 
 	@Required
-	private String tarefa;
-
+	private String label;
 	private String descricao;
 	private String projeto;
 	private int prioridade;
+	private String status;
+	
+	public Task() {
+		super();
+		this.status = "undone";
+	}
 
 	public static Finder<Long, Task> find = 
 			new Finder(Long.class, Task.class);
@@ -41,12 +48,12 @@ public class Task extends Model {
 		this.id = id;
 	}
 
-	public String getTarefa() {
-		return tarefa;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setTarefa(String tarefa) {
-		this.tarefa = tarefa;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
 	public String getDescricao() {
@@ -71,6 +78,20 @@ public class Task extends Model {
 
 	public void setPrioridade(int prioridade) {
 		this.prioridade = prioridade;
+	}
+	
+	public String getStatus(){
+		return status;
+	}
+	
+	public void setStatus(String status){
+		this.status = status;
+	}
+	
+	public static void taskDone(Long id){
+		Task task = find.ref(id);
+		task.setStatus("done");
+		task.update();
 	}
 	
 }

@@ -3,21 +3,47 @@
 @import helper._
 
 @main("Lista de Tarefas") {
-    
-    <h1>@tasks.size() tarefa(s)</h1>
+
+    <h1>Tarefas pendentes</h1>
     
     <ul>
         @for(task <- tasks) {
+            @if(task.getStatus() == "undone") {
             <p><li>
-                <b>@task.getTarefa()</b>
+                <b>@task.getLabel()</b>
+                <br> Descrição: @task.getDescricao()
+                <br> Projeto: @task.getProjeto() 
+                <br> Prioridade: @task.getPrioridade()
+                
+                @form(routes.Application.markAsDone(task.getId())) {
+                    <input type="submit" value="Marcar como feita">
+                }                
+                
+                @form(routes.Application.deleteTask(task.getId())) {
+                    <input type="submit" value="Deletar">
+                }
+
+            </li></p>
+            }
+        }
+    </ul>
+    
+    <h1>Tarefas feitas</h1>
+    
+    <ul>
+        @for(task <- tasks) {
+            @if(task.getStatus() == "done") {
+            <p><li>
+                <b>@task.getLabel()</b>
                 <br> Descrição: @task.getDescricao()
                 <br> Projeto: @task.getProjeto() 
                 <br> Prioridade: @task.getPrioridade()
                 
                 @form(routes.Application.deleteTask(task.getId())) {
-                    <input type="submit" value="Delete">
+                    <input type="submit" value="Deletar">
                 }
             </li></p>
+            }
         }
     </ul>
     
@@ -25,14 +51,12 @@
     
     @form(routes.Application.newTask()) {
         
-        @inputText(taskForm("tarefa"))
-        @inputText(taskForm("descricao"))
-        @inputText(taskForm("projeto"))
-        @inputText(taskForm("prioridade"))
-        Prioridade variando de 1 (alta) a 5 (baixa).
-        <br> 
-        <input type="submit" value="Criar">
-        
+        @inputText(taskForm("label"), '_label -> "Tarefa:")
+        @inputText(taskForm("descricao"), '_descricao -> "Descrição:")
+        @inputText(taskForm("projeto"), '_projeto -> "Projeto:")
+        @inputText(taskForm("prioridade"), '_prioridade -> "Prioridade (variando de 1-alta a 5-baixa):")
+				Prioridade variando de 1-alta a 5-baixa
+        <br><br>
+        <input type="submit" value="Adicionar">
     }
-    
 }

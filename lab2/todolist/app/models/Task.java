@@ -12,7 +12,7 @@ public class Task extends Model {
 	private Long id;
 
 	@Required
-	private String label;
+	private String tarefa;
 
 	public static Finder<Long, Task> find = 
 			new Finder(Long.class, Task.class);
@@ -37,12 +37,12 @@ public class Task extends Model {
 		this.id = id;
 	}
 
-	public String getLabel() {
-		return label;
+	public String getTarefa() {
+		return tarefa;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public void setTarefa(String tarefa) {
+		this.tarefa = tarefa;
 	}
 
 }

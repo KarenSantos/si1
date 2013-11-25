@@ -14,6 +14,10 @@ public class Task extends Model {
 	@Required
 	private String tarefa;
 
+	private String descricao;
+	private String projeto;
+	private int prioridade;
+
 	public static Finder<Long, Task> find = 
 			new Finder(Long.class, Task.class);
 
@@ -45,4 +49,28 @@ public class Task extends Model {
 		this.tarefa = tarefa;
 	}
 
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getProjeto() {
+		return projeto;
+	}
+
+	public void setProjeto(String projeto) {
+		this.projeto = projeto;
+	}
+
+	public int getPrioridade() {
+		return prioridade;
+	}
+
+	public void setPrioridade(int prioridade) {
+		this.prioridade = prioridade;
+	}
+	
 }

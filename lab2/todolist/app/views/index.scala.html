@@ -8,13 +8,16 @@
     
     <ul>
         @for(task <- tasks) {
-            <li>
-                @task.getTarefa()
+            <p><li>
+                <b>@task.getTarefa()</b>
+                <br> Descrição: @task.getDescricao()
+                <br> Projeto: @task.getProjeto() 
+                <br> Prioridade: @task.getPrioridade()
                 
                 @form(routes.Application.deleteTask(task.getId())) {
                     <input type="submit" value="Delete">
                 }
-            </li>
+            </li></p>
         }
     </ul>
     
@@ -22,8 +25,12 @@
     
     @form(routes.Application.newTask()) {
         
-        @inputText(taskForm("tarefa")) 
-        
+        @inputText(taskForm("tarefa"))
+        @inputText(taskForm("descricao"))
+        @inputText(taskForm("projeto"))
+        @inputText(taskForm("prioridade"))
+        Prioridade variando de 1 (alta) a 5 (baixa).
+        <br> 
         <input type="submit" value="Criar">
         
     }

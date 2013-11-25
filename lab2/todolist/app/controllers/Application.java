@@ -29,11 +29,11 @@ public class Application extends Controller {
     	    Task.create(filledForm.get());
     	    return redirect(routes.Application.tasks());  
     	  }
-
     }
     
     public static Result deleteTask(Long id) {
-    	return TODO;
-    }
+    	  Task.delete(id);
+    	  return redirect(routes.Application.tasks());
+    	}
 
 }

@@ -8,7 +8,7 @@ import play.data.validation.Constraints.*;
 import javax.persistence.*;
 
 @Entity
-public class Task extends Model {
+public class Task extends Model implements Comparable<Task> {
 
 	@Id
 	private Long id;
@@ -29,7 +29,9 @@ public class Task extends Model {
 			new Finder(Long.class, Task.class);
 
 	public static List<Task> all() {
-		return find.all();
+		List<Task> tasks = new ArrayList<Task>(find.all());
+		Collections.sort(tasks);
+		return tasks;
 	}
 
 	public static void create(Task task) {
@@ -93,5 +95,9 @@ public class Task extends Model {
 		task.setStatus("done");
 		task.update();
 	}
-	
+
+	@Override
+	public int compareTo(Task task) {
+		return getPrioridade() - task.getPrioridade();
+	}
 }

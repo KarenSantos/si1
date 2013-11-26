@@ -47,16 +47,18 @@
         }
     </ul>
     
+    <div id="nova-tarefa">
     <h2>Adicione uma nova tarefa</h2>
     
     @form(routes.Application.newTask()) {
         
         @inputText(taskForm("label"), '_label -> "Tarefa:")
-        @inputText(taskForm("descricao"), '_descricao -> "Descrição:")
+        @inputText(taskForm("descricao"), '_descricao -> "Descri��o:")
         @inputText(taskForm("projeto"), '_projeto -> "Projeto:")
         @inputText(taskForm("prioridade"), '_prioridade -> "Prioridade (variando de 1-alta a 5-baixa):")
 				Prioridade variando de 1-alta a 5-baixa
         <br><br>
         <input type="submit" value="Adicionar">
+    </div>
     }
 }

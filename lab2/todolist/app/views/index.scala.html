@@ -1,14 +1,32 @@
-@(tasks: List[Task], taskForm: Form[Task])
+@(tasks: List[Task], taskForm: Form[Task], undone: Integer, done: Integer)
 
 @import helper._
 
 @main("Lista de Tarefas") {
 
 	<h1>Quadro de Tarefas</h1>
+	
+	<div id="nova-tarefa">
+		<h2>Nova Tarefa</h2>
+    
+			@form(routes.Application.newTask()) {
+        
+				@inputText(taskForm("label"), '_label -> "Tarefa:")
+				@inputText(taskForm("descricao"), '_label -> "Descrição:")
+				@inputText(taskForm("projeto"), '_label -> "Projeto:")
+        @inputText(taskForm("prioridade"), '_label -> "Prioridade:")
+				<div id="menor">
+				Prioridade variando de 1-alta a 5-baixa
+				</div>
+        <br><br>
+        <input type="submit" value="Adicionar">
+    	}
+   </div>
+	
 	<div id="tarefas-pendentes">
-		<h2>Tarefas pendentes</h2>
+		<h2>@undone tarefa(s) pendente(s)</h2>
 
-    @for(task <- tasks) {
+   	 @for(task <- tasks) {
         @if(task.getStatus() == "undone") {
     			<ul>
             <li>
@@ -30,13 +48,13 @@
             </li></p>
 					</ul>
         }
-    }
+    	}
 	</div>
 	
 	<div id="tarefas-feitas">
-    <h2>Tarefas concluidas</h2>
+    <h2>@done tarefa(s) concluída(s)</h2>
     
-    <ul>
+    	<ul>
         @for(task <- tasks) {
             @if(task.getStatus() == "done") {
             <li>
@@ -53,23 +71,7 @@
             </li></p>
             }
         }
-    </ul>
+    	</ul>
 	</div>
 
-	<div id="nova-tarefa">
-		<h2>Nova Tarefa</h2>
-    
-			@form(routes.Application.newTask()) {
-        
-				@inputText(taskForm("label"), '_label -> "Tarefa:")
-				@inputText(taskForm("descricao"), '_label -> "Descrição:")
-				@inputText(taskForm("projeto"), '_label -> "Projeto:")
-        @inputText(taskForm("prioridade"), '_label -> "Prioridade:")
-				<div id="menor">
-				Prioridade variando de 1-alta a 5-baixa
-				</div>
-        <br><br>
-        <input type="submit" value="Adicionar">
-    	}
-   </div>
 }

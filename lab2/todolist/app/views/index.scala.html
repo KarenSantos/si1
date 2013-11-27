@@ -4,16 +4,20 @@
 
 @main("Lista de Tarefas") {
 
-    <h1>Tarefas pendentes</h1>
-    
-    <ul>
-        @for(task <- tasks) {
-            @if(task.getStatus() == "undone") {
-            <p><li>
+	<h1>Quadro de Tarefas</h1>
+	<div id="tarefas-pendentes">
+		<h2>Tarefas pendentes</h2>
+
+    @for(task <- tasks) {
+        @if(task.getStatus() == "undone") {
+    			<ul>
+            <li>
                 <b>@task.getLabel()</b>
-                <br> Descrição: @task.getDescricao()
-                <br> Projeto: @task.getProjeto() 
-                <br> Prioridade: @task.getPrioridade()
+								<div id="menor">
+                Descrição: @task.getDescricao() <br> 
+                Projeto: @task.getProjeto() <br> 
+                Prioridade: @task.getPrioridade()
+								</div>
                 
                 @form(routes.Application.markAsDone(task.getId())) {
                     <input type="submit" value="Marcar como feita">
@@ -24,20 +28,24 @@
                 }
 
             </li></p>
-            }
+					</ul>
         }
-    </ul>
-    
-    <h1>Tarefas feitas</h1>
+    }
+	</div>
+	
+	<div id="tarefas-feitas">
+    <h2>Tarefas concluidas</h2>
     
     <ul>
         @for(task <- tasks) {
             @if(task.getStatus() == "done") {
-            <p><li>
+            <li>
                 <b>@task.getLabel()</b>
-                <br> Descrição: @task.getDescricao()
-                <br> Projeto: @task.getProjeto() 
-                <br> Prioridade: @task.getPrioridade()
+                <div id="menor">
+                Descrição: @task.getDescricao() <br> 
+                Projeto: @task.getProjeto() <br> 
+                Prioridade: @task.getPrioridade()
+								</div>
                 
                 @form(routes.Application.deleteTask(task.getId())) {
                     <input type="submit" value="Deletar">
@@ -46,19 +54,22 @@
             }
         }
     </ul>
+	</div>
+
+	<div id="nova-tarefa">
+		<h2>Nova Tarefa</h2>
     
-    <div id="nova-tarefa">
-    <h2>Adicione uma nova tarefa</h2>
-    
-    @form(routes.Application.newTask()) {
+			@form(routes.Application.newTask()) {
         
-        @inputText(taskForm("label"), '_label -> "Tarefa:")
-        @inputText(taskForm("descricao"), '_descricao -> "Descri��o:")
-        @inputText(taskForm("projeto"), '_projeto -> "Projeto:")
-        @inputText(taskForm("prioridade"), '_prioridade -> "Prioridade (variando de 1-alta a 5-baixa):")
+				@inputText(taskForm("label"), '_label -> "Tarefa:")
+				@inputText(taskForm("descricao"), '_label -> "Descrição:")
+				@inputText(taskForm("projeto"), '_label -> "Projeto:")
+        @inputText(taskForm("prioridade"), '_label -> "Prioridade:")
+				<div id="menor">
 				Prioridade variando de 1-alta a 5-baixa
+				</div>
         <br><br>
         <input type="submit" value="Adicionar">
-    </div>
-    }
+    	}
+   </div>
 }

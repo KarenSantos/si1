@@ -1,80 +1,66 @@
+h1 {
+	font-family: 'Georgia', serif;
+    color: black;
+    text-align: center;
+}
+
+h2 {
+	font-family: 'Georgia', serif;
+    color: black;
+}
+
 body {
-    font-family: Helvetica, Arial;
+	font-family: 'Georgia', serif;
     font-weight: lighter;
     text-align: left;
+    overflow: auto;
 }
 
-h1 {
-    color: #333;
-}
-
-p {
-    color: #666;
+#menor{
+	font-size:15px;
+	font-style:italic;
 }
 
 #nova-tarefa {
-    margin: 0;
-	padding: 0;
-    font-family: 'Georgia', serif;
+	position:fixed;
+	top:4em;
+	left:1.5%;
+    margin-left: 2em;
+	padding-top:0.5em;
+	padding-left:2em;
+	width: 24%;
+	height: 82%;
     font-size: 20px;
-    color:yellow;
-    background: black;
+    background: #FFEE99;
+    box-shadow: 10px 10px 5px #888888;
 }
 
-
-
-#header-wrapper {
-	width: 100%;
-	background: #BBFAAA;
-	overflow: hidden;
+#tarefas-pendentes {
+	position:fixed;
+	top:4em;
+	left:31%;
+    margin-left: 2em;
+	padding-top:0.5em;
+	padding-left:2em;
+	width: 27%;
+	height: 82%;
+    font-size: 20px;
+    background: #FFA488;
+    box-shadow: 10px 10px 5px #888888;
+    overflow: auto;
 }
 
-#header {
-	top: 1em;
-	left: 5em;
-	position: relative;
-}
-
-#maisListas {
-	left: 7em;
-	position: fixed;
-	bottom: 2em;
-}
-
-#botaoCriar {
-    position: fixed;
-    top: 2.7em;
-    alignment: center;
-    left: 40em;
-    width: 25%;
-}
-
-#wrapper {
-	left: 5em;
-	right: 5em;
-	top: 10em;
-	position: fixed;
-	height: 72%;
-	background: white;
-}
-
-#page {
-	left: 2em;
-	position: absolute;
-	overflow: auto;
-	width: 97%; 
-	height: 84%;
-}
-
-#content{
-	
-}
-
-#playlist {
-	left:45em;
-	top: 3em;
-	width: 53%;
-	height: 80%;
-	overflow: auto;
-	position: absolute;
+#tarefas-feitas {
+	position:fixed;
+	top:4em;
+	left:64%;
+    margin-left: 2em;
+	padding-top:0.5em;
+	padding-left:2em;
+	width: 27%;
+	height: 82%;
+    font-size: 20px;
+    background: #DDFF77;
+    box-shadow: 10px 10px 5px #888888;
+    overflow: auto;
 }
